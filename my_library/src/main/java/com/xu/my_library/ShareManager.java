@@ -22,49 +22,54 @@ public class ShareManager {
         this.mContext = mContext;
     }
 
-    public void setShareImage(final int flag, final List<String> stringList,final String Kdescription){
+    public void setShareImage(final int flag, final List<String> stringList,final String Kdescription,final String mType){
 
-        if (!Tools.isWeixinAvilible(mContext)){
+        if (mType.equals("qq") && !Tools.isAppAvilible(mContext,"com.tencent.mobileqq")){
+
+            Toast.makeText(mContext, "您还没有安装QQ", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (mType.equals("wchat") && !Tools.isAppAvilible(mContext,"com.tencent.mm")){
 
             Toast.makeText(mContext, "您还没有安装微信", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (mType.equals("qq_zone") && !Tools.isAppAvilible(mContext,"com.qzone")){
+            Toast.makeText(mContext, "您还没有安装QQ空间", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        }else{
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    for (int i = 0; i < stringList.size(); i++) {
-                        File file = Tools.saveImageToSdCard(mContext, stringList.get(i));
-                        files.add(file);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < stringList.size(); i++) {
+                    File file = Tools.saveImageToSdCard(mContext, stringList.get(i));
+                    files.add(file);
+                }
+                Intent intent = new Intent();
+                ComponentName comp;
+                if (mType.contains("qq")){
+                    if (flag == 0) {
+                        comp = new ComponentName("com.tencent.mobileqq", "com.tencent.mobileqq.activity.JumpActivity");
+                    }else{
+                        comp = new ComponentName("com.qzone", "com.qzonex.module.operation.ui.QZonePublishMoodActivity");
                     }
-
-
-                    Intent intent = new Intent();
-                    ComponentName comp;
-
+                }else{
                     if (flag == 0) {
                         comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI");
                     } else {
                         comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI");
-                        intent.putExtra("Kdescription", Kdescription);
+//                           intent.putExtra("Kdescription", Kdescription);
                     }
-                    intent.setComponent(comp);
-                    intent.setAction(Intent.ACTION_SEND_MULTIPLE);
-                    intent.setType("image/*");
-
-                    ArrayList<Uri> imageUris = new ArrayList<Uri>();
-                    for (File f : files) {
-                        imageUris.add(Uri.fromFile(f));
-                    }
-
-                    intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
-                    mContext.startActivity(intent);
-
                 }
-            }).start();
-        }
-
+                intent.setComponent(comp);
+                intent.setAction(Intent.ACTION_SEND_MULTIPLE);
+                intent.setType("image/*");
+                ArrayList<Uri> imageUris = new ArrayList<Uri>();
+                for (File f : files) {
+                    imageUris.add(Uri.fromFile(f));
+                }
+                intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
+                mContext.startActivity(intent);
+            }
+        }).start();
     }
-
 }

@@ -22,6 +22,22 @@
         android:text="分享到微信朋友圈"
         />
 
+    <Button
+        android:id="@+id/btn_share_qq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="分享QQ好友"
+        />
+
+    <Button
+        android:id="@+id/btn_share_qzone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="分享到空间"
+        />
+
 
 
 </LinearLayout>
