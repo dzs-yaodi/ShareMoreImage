@@ -41,7 +41,12 @@ public class ShareManager {
             @Override
             public void run() {
                 for (int i = 0; i < stringList.size(); i++) {
-                    File file = Tools.saveImageToSdCard(mContext, stringList.get(i));
+                    File file = null;
+                    if (stringList.get(i).contains("http")) {
+                        file  = Tools.saveImageToSdCard(mContext, stringList.get(i));
+                    }else{
+                        file = new File(stringList.get(i));
+                    }
                     files.add(file);
                 }
                 Intent intent = new Intent();
