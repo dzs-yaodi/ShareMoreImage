@@ -4,11 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ShareMoreImage.iml" filepath="$PROJECT_DIR$/.idea/ShareMoreImage.iml" />
       <module fileurl="file://D:\android_3.0\workSpace\ShareMoreImage\ShareMoreImage.iml" filepath="D:\android_3.0\workSpace\ShareMoreImage\ShareMoreImage.iml" />
-      <module fileurl="file://D:\android_3.0\workSpace\ShareMoreImage\.idea\ShareMoreImage.iml" filepath="D:\android_3.0\workSpace\ShareMoreImage\.idea\ShareMoreImage.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\android_3.0\workSpace\ShareMoreImage\app\app.iml" filepath="D:\android_3.0\workSpace\ShareMoreImage\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/my_library/my_library.iml" filepath="$PROJECT_DIR$/my_library/my_library.iml" />
-      <module fileurl="file://D:\android_3.0\workSpace\ShareMoreImage\my_library\my_library.iml" filepath="D:\android_3.0\workSpace\ShareMoreImage\my_library\my_library.iml" />
     </modules>
   </component>
 </project>

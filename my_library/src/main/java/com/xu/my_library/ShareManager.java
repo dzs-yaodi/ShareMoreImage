@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.widget.Toast;
 
 import java.io.File;
@@ -74,6 +75,7 @@ public class ShareManager {
                 }
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
                 mContext.startActivity(intent);
+
             }
         }).start();
     }

@@ -5,6 +5,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,7 +61,12 @@ public class Tools {
     public static File createStableImageFile(Context context) throws IOException {
         i++;
         String imageFileName =IMAGE_NAME + i+ ".jpg";
-        File storageDir = context.getExternalCacheDir();
+//        File storageDir = new File(context.getExternalCacheDir() + "shareImg");
+        File storageDir = new File(Environment.getExternalStorageDirectory() + "/shareImg/");
+        Log.i("info","=======保存路径====" + storageDir.getAbsolutePath());
+        if (!storageDir.exists()){
+            storageDir.mkdirs();
+        }
         File image = new File(storageDir, imageFileName);
         return image;
     }
@@ -77,5 +84,23 @@ public class Tools {
             }
         }
         return false;
+    }
+
+    public static void deletePic(File file){
+
+        if (file.isDirectory()){
+
+            File[] files = file.listFiles();
+
+            for (int j = 0; j < files.length; j++) {
+                File f = files[j];
+                deletePic(f);
+            }
+
+//            file.delete();//如要保留文件夹，只删除文件，请注释这行
+        }else{
+            file.delete();
+        }
+
     }
 }
