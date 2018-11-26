@@ -63,4 +63,6 @@ startActivity(intent);
 
 修改图片缓存地址，每次分享成功返回页面，在onResume中调用deletePic() 方法删除图片缓存
 
-![微信6.7.3版本以后微信屏蔽了微信朋友圈的多图分享，好友多图分享还是能用的](https://github.com/XW837156540/ShareMoreImage/blob/master/app/src/main/res/mipmap-hdpi/iv_test.jpg)
+微信6.7.3版本以后微信屏蔽了微信朋友圈的多图分享，好友多图分享还是有效的
+
+![微信6.7.3版本以后微信屏蔽了微信朋友圈的多图分享，好友多图分享还能用](https://github.com/XW837156540/ShareMoreImage/blob/master/app/src/main/res/mipmap-hdpi/iv_test.jpg)
